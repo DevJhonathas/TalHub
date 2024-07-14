@@ -1,0 +1,44 @@
+Bibliotecas:
+
+Frontend:
+Axios
+Reactjs
+@Reduxjs/toolkit
+React Router Dom
+React icons
+
+Backend:
+MongoDB
+Mongoose
+Cors
+Multer
+Dotenv
+Bycriptjs
+express
+express-validator
+JsonWebtoken
+webSocket
+
+
+## Princial:
+Grupos públicos e privados
+Salas públicas e privadas
+Sistema de Amizade
+Conseguem enviar imagens
+Usuários consegue ter foto de perfil
+
+## Melhorias:
+Enviar emoji
+Marcar uma pessoa @
+Aumentar e diminuir fonte
+Enviar gif
+Curtir mensagem
+Favoritar mensagem
+Call por voz + sair da call + mutar + silenciar audios + silenciar call
+Call por video 
+Compartilhar tela
+Status 
+temas -> Dark -> Dracula -> White
+Convidar Usuários
+Adicionar amigo a Grupos
+Não permitir ser adicionado no grupo
