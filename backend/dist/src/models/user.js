@@ -24,10 +24,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
-const friendshipSchema = new mongoose_1.Schema({
-    request_user: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
-    receive_user: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
-    status: { type: String, enum: ['pendente', 'aceito', 'rejeitado'], default: 'pendente' }
-});
-const FriendshipModel = mongoose_1.default.model("Friendship", friendshipSchema);
-exports.default = FriendshipModel;
+const userSchema = new mongoose_1.Schema({
+    _id: { type: mongoose_1.Schema.Types.ObjectId, auto: true },
+    username: { type: String, required: true },
+    password: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    role: { type: String, enum: ["admin_master", "admin_grupo", "usuario"], required: true },
+    profileImage: { type: String, default: "default.jpg" },
+    friends: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'User' }],
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
+}, { timestamps: true });
+const userModel = mongoose_1.default.model("User", userSchema);
+exports.default = userModel;
