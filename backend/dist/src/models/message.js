@@ -29,7 +29,8 @@ const messageSchema = new mongoose_1.Schema({
     sender: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
     receiver: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User' },
     group: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Group' },
-    content: { type: String, required: true },
+    content: { type: String },
+    image: { type: String },
     timestamp: { type: Date, default: Date.now },
 });
 const MessageModel = mongoose_1.default.model("Message", messageSchema);
