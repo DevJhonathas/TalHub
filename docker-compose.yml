@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   frontend:
-    image: jhoanthass/talkhub-frontend
+    image: jhonathass/talkhub-frontend
     # build:
     #   context: ./frontend
     ports:
@@ -13,11 +13,11 @@ services:
       - backend
 
   backend:
-    image: jhoanthass/talkhub-backend
+    image: jhonathass/talkhub-backend
     # build:
     #   context: ./backend
     ports:
-      - "5000:5000"
+      - "4000:4000"
     env_file:
       - .env
     depends_on:
