@@ -1,12 +1,12 @@
 import mongoose,{Document, Schema, ObjectId} from "mongoose";
 
 interface Message  extends Document{
-    sender: ObjectId,
-    receiver?: ObjectId,
-    group?: ObjectId, 
-    content?: string,
-    image?: string,
-    timestamp: Date,
+    sender: ObjectId;
+    receiver?: ObjectId;
+    group?: ObjectId;
+    content?: string;
+    image?: string;
+    timestamp: Date;
 };
 
 const messageSchema = new Schema<Message>({
