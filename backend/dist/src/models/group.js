@@ -28,7 +28,8 @@ const groupSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
     members: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'User' }],
-    type: { type: String, enum: ['public', 'private'], required: true }
+    type: { type: String, enum: ['public', 'private'], required: true },
+    creator: { type: String, required: true }
 });
 const GroupModel = mongoose_1.default.model("Group", groupSchema);
 exports.default = GroupModel;

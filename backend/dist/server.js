@@ -16,12 +16,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const conn_1 = __importDefault(require("./src/db/conn"));
+const router_1 = __importDefault(require("./src/routes/router"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, conn_1.default)();
     console.log("Pronto para interagir com o banco de dados.");
+    app.use(express_1.default.json());
+    app.use("/", router_1.default);
     app.get("/", (req, res) => {
         res.send("Retornando valor teste");
     });

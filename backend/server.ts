@@ -2,6 +2,7 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import connectToDatabase from "./src/db/conn";
+import routes from "./src/routes/router";
 
 dotenv.config();
 
@@ -10,9 +11,11 @@ const port = process.env.PORT;
 
 const startServer = async () => {
   await connectToDatabase();
-
   console.log("Pronto para interagir com o banco de dados.");
-  
+
+  app.use(express.json());
+  app.use("/", routes)
+
   app.get("/", (req: Request, res: Response) => {
     res.send("Retornando valor teste");
   });

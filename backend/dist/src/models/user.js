@@ -31,7 +31,6 @@ const userSchema = new mongoose_1.Schema({
     email: { type: String, required: true, unique: true },
     role: { type: String, enum: ["admin_master", "admin_grupo", "usuario"], required: true },
     profileImage: { type: String, default: "default.jpg" },
-    friends: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'User' }],
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
 }, { timestamps: true });

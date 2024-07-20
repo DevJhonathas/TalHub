@@ -35,6 +35,7 @@ const userController = {
                 email,
                 password: passwordHash,
                 profileImage,
+                role: "usuario"
             });
 
             const savedUser = await newUser.save();
@@ -46,7 +47,7 @@ const userController = {
             });
 
         } catch (error) {
-            
+            console.log(error);
         }
     },
 
