@@ -74,7 +74,7 @@ const userController = {
         });
     },
     
-    getAllLogin: async(res: Response): Promise<void> => {
+    getAllLogin: async(req: Request, res: Response): Promise<void> => {
         try {
             const login = await userModel.find();
             res.json(login);
