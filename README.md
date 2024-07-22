@@ -48,7 +48,6 @@ At Talkhub, we prioritize user security. We have implemented the following measu
 Talkhub offers a range of features to enrich and interactively enhance your experience:
 
 - **Public and Private Groups**
-- **Public and Private Rooms**
 - **Friendship System**
 - **Image Sending**
 - **Profile Pictures**
@@ -120,7 +119,6 @@ No Talkhub, priorizamos a segurança dos usuários. Implementamos as seguintes m
 Talkhub oferece uma série de funcionalidades para tornar a experiência mais rica e interativa:
 
 - **Grupos públicos e privados**
-- **Salas públicas e privadas**
 - **Sistema de amizade**
 - **Envio de imagens**
 - **Fotos de perfil**
