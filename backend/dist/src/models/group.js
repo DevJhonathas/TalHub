@@ -33,3 +33,4 @@ const groupSchema = new mongoose_1.Schema({
 });
 const GroupModel = mongoose_1.default.model("Group", groupSchema);
 exports.default = GroupModel;
+//# sourceMappingURL=group.js.map

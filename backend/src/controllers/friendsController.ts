@@ -1,0 +1,2 @@
+//GetFriend -> get
+//DeleteFriend -> delete 

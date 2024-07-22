@@ -73,7 +73,7 @@ const userController = {
             msg: "O login está feito!"
         });
     }),
-    getAllLogin: (res) => __awaiter(void 0, void 0, void 0, function* () {
+    getAllLogin: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const login = yield user_1.default.find();
             res.json(login);
@@ -138,3 +138,4 @@ const userController = {
     }),
 };
 exports.default = userController;
+//# sourceMappingURL=usersControllers.js.map

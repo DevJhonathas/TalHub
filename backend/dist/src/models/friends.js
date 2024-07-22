@@ -31,3 +31,4 @@ const friendsSchema = new mongoose_1.Schema({
 });
 const friendsModel = mongoose_1.default.model("Friends", friendsSchema);
 exports.default = friendsModel;
+//# sourceMappingURL=friends.js.map

@@ -3,10 +3,13 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import connectToDatabase from "./src/db/conn";
 import routes from "./src/routes/router";
+import cors from 'cors'
 
 dotenv.config();
 
 const app: Express = express();
+app.use(cors()); //add cors middleware
+
 const port = process.env.PORT;
 
 const startServer = async () => {

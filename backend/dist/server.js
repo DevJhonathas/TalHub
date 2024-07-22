@@ -17,8 +17,10 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const conn_1 = __importDefault(require("./src/db/conn"));
 const router_1 = __importDefault(require("./src/routes/router"));
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
+app.use((0, cors_1.default)()); //add cors middleware
 const port = process.env.PORT;
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, conn_1.default)();
@@ -33,3 +35,4 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 startServer().catch(console.error);
+//# sourceMappingURL=server.js.map
