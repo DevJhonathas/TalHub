@@ -14,7 +14,7 @@ router.route("/login")
 
 router.route("/login/:id")
   .get((req: Request, res: Response) => userController.getLogin(req, res));
-  
+
 router.route("/profile")
   .get((req: Request, res: Response) => userController.getCurrentUser(req, res));
 

@@ -48,6 +48,7 @@ const userController = {
 
         } catch (error) {
             console.log(error);
+            res.status(500).json(error);
         }
     },
 
@@ -80,6 +81,7 @@ const userController = {
             res.json(login);
         } catch(error) {
             console.log(error);
+            res.status(500).json(error);
         }
     },
 
@@ -95,6 +97,7 @@ const userController = {
             res.status(200).json(login);
         } catch (error) {
             console.log(error);
+            res.status(500).json(error);
         }
     },
 
@@ -149,5 +152,4 @@ const userController = {
         });
     },
 }
-
 export default userController;
