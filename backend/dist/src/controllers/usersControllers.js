@@ -52,6 +52,7 @@ const userController = {
         }
         catch (error) {
             console.log(error);
+            res.status(500).json(error);
         }
     }),
     signLogin: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -67,9 +68,10 @@ const userController = {
             return;
         }
         const userPassword = user._id;
+        const token = generateToken(userPassword);
         res.status(201).json({
             email: email,
-            token: generateToken(userPassword.toString()),
+            token: token,
             msg: "O login está feito!"
         });
     }),
@@ -80,6 +82,7 @@ const userController = {
         }
         catch (error) {
             console.log(error);
+            res.status(500).json(error);
         }
     }),
     getLogin: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -94,6 +97,7 @@ const userController = {
         }
         catch (error) {
             console.log(error);
+            res.status(500).json(error);
         }
     }),
     updateLogin: (req, res) => __awaiter(void 0, void 0, void 0, function* () {

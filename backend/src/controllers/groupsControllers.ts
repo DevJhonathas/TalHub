@@ -1,7 +1,6 @@
 import groupsModel from "../models/group";
 import {Response, Request} from "express";
-import mongoose from "mongoose";
-
+import userController from "../controllers/usersControllers";
 
 //createGroup - create
 //getGroupById - get
@@ -11,27 +10,33 @@ import mongoose from "mongoose";
 
 const groupsController = {
     createGroup: async(req: Request, res: Response): Promise<void> => {
-        const {name, description, type, creator} = req.body;
-        const id = req.params.id;
-
         try {
-            const existingGroupById =  await groupsModel.findById({id}) as any;
-            if(existingGroupById){
-                res.status(409).json({ msg: ["Grupo já existente!"] });
-                return;
-            };
+            const { name, description, type } = req.body;
 
-            const newGroup = new groupsModel({
+            if (type !== 'publico' && type !== 'privado') {
+                res.status(400).json({ msg: ["Tipo de grupo inválido! Deve ser 'public' ou 'private'."] });
+                return;
+            }
+
+            if (!name || !description || !type) {
+                res.status(422).json({ msg: ["Parâmetros incompletos para criação de grupo."] });
+                return;
+            }
+
+            const currentUser = await userController.getCurrentUser(req, res) as any;
+            
+            const createGroup = await groupsModel.create({
                 name,
                 description,
                 type,
-                creator
-            });
-
-            const savedGroup = await newGroup.save();
+                creator:{
+                    id: currentUser._id,
+                    username: currentUser.username
+                }
+            })
             res.status(201).json({
-                group: savedGroup,
-                msg: `Groupo ${name} criado com sucesso!`
+                createGroup,
+                msg: `Groupo criado com sucesso!`
             });
         } catch (error) {
             console.log(error);

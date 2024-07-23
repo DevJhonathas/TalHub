@@ -13,35 +13,75 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const group_1 = __importDefault(require("../models/group"));
+const usersControllers_1 = __importDefault(require("../controllers/usersControllers"));
 //createGroup - create
-//getUserGroup - get
+//getGroupById - get
+//getAllGroups - get
+//updateGroup - update
 //findGroup - get
 const groupsController = {
     createGroup: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { name, description, type, creator } = req.body;
-        const id = req.params.id;
         try {
-            const existingGroupById = yield group_1.default.findOne({ id });
-            if (existingGroupById) {
-                res.status(409).json({ msg: ["Grupo já existente!"] });
+            const { name, description, type } = req.body;
+            if (type !== 'publico' && type !== 'privado') {
+                res.status(400).json({ msg: ["Tipo de grupo inválido! Deve ser 'public' ou 'private'."] });
                 return;
             }
-            ;
-            const newGroup = new group_1.default({
+            if (!name || !description || !type) {
+                res.status(422).json({ msg: ["Parâmetros incompletos para criação de grupo."] });
+                return;
+            }
+            const currentUser = yield usersControllers_1.default.getCurrentUser(req, res);
+            const createGroup = yield group_1.default.create({
                 name,
                 description,
                 type,
-                creator
+                creator: {
+                    id: currentUser._id,
+                    username: currentUser.username
+                }
             });
-            const savedGroup = yield newGroup.save();
             res.status(201).json({
-                group: savedGroup,
-                msg: "Groupo criado com sucesso!"
+                createGroup,
+                msg: `Groupo criado com sucesso!`
             });
         }
         catch (error) {
             console.log(error);
+            res.status(500).json(error);
         }
+    }),
+    getGroup: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const { id } = req.params;
+            const { name } = req.body;
+            const selectGroup = yield group_1.default.findOne(id || name);
+            if (!selectGroup) {
+                res.status(204).json({ msg: ["Grupo não encontrado."] });
+            }
+            ;
+            res.status(201).json({ selectGroup });
+        }
+        catch (error) {
+            console.log(error);
+            res.status(500).json(error);
+        }
+    }),
+    getAllGroups: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const groups = yield group_1.default.find();
+            res.status(201).json({
+                groups
+            });
+        }
+        catch (error) {
+            console.log(error);
+            res.status(500).json(error);
+        }
+    }),
+    updateGroupByID: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    }),
+    deleteGroupById: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     })
 };
 exports.default = groupsController;

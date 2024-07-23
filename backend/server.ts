@@ -8,7 +8,15 @@ import cors from 'cors'
 dotenv.config();
 
 const app: Express = express();
-app.use(cors()); //add cors middleware
+app.use(cors()); 
+
+app.use(cors({
+  origin: 'http://localhost:5000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'],    // Cabeçalhos permitidos
+  credentials: true                                     // Habilitar envio de cookies e credenciais
+}));
+
 
 const port = process.env.PORT;
 

@@ -20,7 +20,13 @@ const router_1 = __importDefault(require("./src/routes/router"));
 const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)()); //add cors middleware
+app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: 'http://localhost:5000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
+    credentials: true // Habilitar envio de cookies e credenciais
+}));
 const port = process.env.PORT;
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, conn_1.default)();

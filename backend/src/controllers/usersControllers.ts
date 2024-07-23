@@ -68,9 +68,10 @@ const userController = {
         }
         
         const userPassword = user._id as string;
+        const token = generateToken(userPassword);
         res.status(201).json({
             email: email,
-            token: generateToken(userPassword.toString()),
+            token: token,
             msg: "O login está feito!"
         });
     },
